@@ -13,6 +13,7 @@ NODE *head,*current;
 int create(int );
 void  print();
 void middlenode_find();
+void middlenode_insert();
 
 int main()
 {
@@ -20,7 +21,7 @@ int main()
   while(1)
   {
     printf("please choose an option\n");
-    printf("1.linked list creation\t 2.display the linked list\t 3.find a middle node\t 4.exit\n);
+    printf("1.linked list creation\t 2.display the linked list\t 3.find a middle node\t 4.insert node at middle\t 5.exit\n);
     int choice;
     scanf("%d",choice");
     switch(1)
@@ -40,6 +41,9 @@ int main()
               break;
 
       case 4 :
+               middlenode_insert();
+                break;
+        case 5 : 
               exit(1);
       default :
                printf("please choose the valid option\n");
@@ -109,4 +113,34 @@ void middlenode_find() \* find a middle node in single linked list*\
                 second=second->link;
         }
         printf("found the middle node at :%d\n",second->data);
+}
+          
+void middlenode_insert() \* find a middle node of the linked list and insert a node there of middle position *\
+{
+        NODE *first,*second;
+        first=second=head;
+        if(first==NULL)
+        {
+                printf("head node is pointing to NULL\n");
+                exit(1);
+        }
+        while (first!=NULL&&first->link!=NULL)
+        {
+                first=first->link->link;
+                second=second->link;
+        }
+
+        NODE *temp;
+        temp = (NODE*) malloc(sizeof(NODE));
+        if(temp==NULL)
+        {
+                 printf("no memory allocated\n");
+                exit(1);
+        }
+        int data;
+        printf("enter the data to be inserted:\n");
+        scanf("%d",&data);
+        temp->data=data;
+        temp->link=second->link;
+        second->link=temp;
 }
