@@ -12,6 +12,7 @@ NODE *head,*current;
 
 int create(int );
 void  print();
+void middlenode_find();
 
 int main()
 {
@@ -19,7 +20,7 @@ int main()
   while(1)
   {
     printf("please choose an option\n");
-    printf("1.linked list creation\t 2.display the linked list\t 3.exit\n);
+    printf("1.linked list creation\t 2.display the linked list\t 3.find a middle node\t 4.exit\n);
     int choice;
     scanf("%d",choice");
     switch(1)
@@ -33,9 +34,13 @@ int main()
               break;
       case 2 :
               print();
-               break;
+              break;
       case 3 :
-              exit();
+              middlenode_find();
+              break;
+
+      case 4 :
+              exit(1);
       default :
                printf("please choose the valid option\n");
                break;
@@ -87,4 +92,21 @@ void print()   /* to traverse and to print a linked list */
                 }
                 printf("%d-->NULL\n",first->data);
         }
+}
+          
+void middlenode_find() \* find a middle node in single linked list*\
+{
+        NODE *first,*second;
+        first=second=head;
+        if(first==NULL)
+        {
+                printf("head node is pointing to NULL\n");
+                exit(1);
+        }
+        while (first!=NULL&&first->link!=NULL)
+        {
+                first=first->link->link;
+                second=second->link;
+        }
+        printf("found the middle node at :%d\n",second->data);
 }
