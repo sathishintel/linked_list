@@ -27,3 +27,20 @@ struct node* recursiveReverseLL(struct node* first){
 
    return rest; // rest now points to the head of the reversed list.
 }
+
+//method -3
+LINK *reverse_linked_list_recursion(LINK *head)
+{
+        LINK *temp;
+        if (!head) {
+                printf("Empty list\n");
+                return head;
+        }
+        else if (!head->next)
+                return head;
+        temp = reverse_linked_list_recursion(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return temp;
+}
+
