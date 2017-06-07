@@ -44,3 +44,20 @@ LINK *reverse_linked_list_recursion(LINK *head)
         return temp;
 }
 
+//method 4
+truct node { 
+struct node *np; 
+int datum; 
+}; 
+
+struct node *swap_nodes( struct node *np) 
+{ 
+
+if ( ! np) 
+return np; 
+else if (np = np->np) 
+return np; 
+
+else 
+np->np = swap_nodes( np); 
+}
