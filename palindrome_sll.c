@@ -5,7 +5,7 @@ int __is_palindrome(struct node *left , struct node *right) {
  if (right ==  NULL)
      return 1;
   }
-  int flag = __is_palindrom(left,right);
+  int flag = __is_palindrom(left,right->next);
   if (flag == 0) 
     return 0;
 
