@@ -6,15 +6,45 @@ struct node {
 };
 
 struct node* new_node(int data);
-/*
-void insert_after_position(struct node *head,int pos) {
-    if (head == NULL) {
-	printf("head is pointing NULL \n"); {
-	return ;
+
+void insert_after_position(struct node **head,int pos) {
+    int act = pos;
+    int data;
+    struct node *temp =  NULL;
+    /* handle if the position is 1 */
+    if (head == NULL || pos == 1 ) {
+        printf("pso 1 , enter the data:");
+        scanf("%d",&data);
+        temp = new_node(data);
+	if (head) {
+	   temp->next = (*head)->next;
+	   (*head)->next = temp;
+	} else {
+	   temp->next = *head;
+       	   *head = temp;
+	}
+        return;
     }
-    struct node *current = head;
+    struct node *current = *head;
+
+    while (pos-- && current->next) {
+        if (pos == 1) {
+            printf("reached position:%d enter data to be inserted:\n",act+1-pos);
+            scanf("%d",&data);
+            temp = new_node(data);
+            temp->next = current->next->next;
+	    if (current->next)	
+		current->next->next = temp;
+	    else
+		current->next = temp;
+            printf("\ndata inserved current temp->data = %d\n",temp->data);
+            return;
+        }
+        current = current->next;
+    }
+    return;
+
 }
-*/
 void insert_before_position(struct node **head,int pos) {
     if (head == NULL) {
 	printf("head is pointing NULL \n");
@@ -163,9 +193,9 @@ int main() {
 	break;
     default :
 	printf("enter the position :");
-	//scanf("%d",&pos);
-	//printf("\n");
-	//insert_after_position(&head,pos);
+	scanf("%d",&pos);
+	printf("\n");
+	insert_after_position(&head,pos);
 	break;
     }
 
